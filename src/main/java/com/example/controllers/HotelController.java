@@ -1,21 +1,24 @@
 package com.example.controllers;
 
 import com.example.models.Hotel;
+import com.example.models.Item;
 import com.example.services.HotelService;
+import com.example.services.ItemService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
-@RequestMapping("/hotel")
+@RequestMapping("/hotels")
 public class HotelController {
 
     @Autowired
     private HotelService hotelService;
+    @Autowired
+    private ItemService itemService;
 
-    @RequestMapping("/")
+    @RequestMapping("")
     public String hotelHome() {
         return "Hotel Home working!!";
     }
@@ -26,7 +29,17 @@ public class HotelController {
     }
 
     @RequestMapping(value="/{hotelId}", method=RequestMethod.GET)
-    public Hotel getHotel(@RequestBody int hotelId) {
+    public Hotel getHotel(@PathVariable int hotelId) {
         return hotelService.getHotel(hotelId);
+    }
+
+    @RequestMapping(value="/{hotelId}/items", method=RequestMethod.GET)
+    public List<Item> getAllHotelItems(@PathVariable int hotelId) {
+        return itemService.getAllHotelItems(hotelId);
+    }
+
+    @RequestMapping(value="/all", method=RequestMethod.GET)
+    public List<Hotel> getAllHotels() {
+        return hotelService.getAllHotels();
     }
 }

@@ -27,6 +27,16 @@ public class ItemService {
 
     // Get items of a particular hotel
     public List<Item> getAllHotelItems(int hotelId) {
-        return itemRepository.findA
+        return itemRepository.findByHotelId(hotelId);
+    }
+
+    public String deleteItem(int itemId) {
+        try {
+            itemRepository.delete(itemId);
+            return "Successfully deleted item";
+        }
+        catch(IllegalArgumentException e) {
+            return "Error deleting item";
+        }
     }
 }

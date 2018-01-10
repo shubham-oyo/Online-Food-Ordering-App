@@ -16,9 +16,8 @@ public class CustomerService {
         return customerRepository.findOne(id);
     }
 
-    public int addCustomer(Customer customer) {
-        Customer returnedCustomer = customerRepository.save(customer);
-        return returnedCustomer.getCid();
+    public Customer addCustomer(Customer customer) {
+        return customerRepository.save(customer);
     }
 
     public List<Customer> getAllCustomers() {

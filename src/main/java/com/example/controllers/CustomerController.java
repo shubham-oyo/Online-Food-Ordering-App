@@ -4,25 +4,24 @@ import org.springframework.boot.*;
 import com.example.models.Customer;
 import com.example.services.CustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.jackson.JsonObjectDeserializer;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
-@RequestMapping("/customer")
+@RequestMapping("/customers")
 public class CustomerController {
 
     @Autowired
     private CustomerService customerService;
 
-    @RequestMapping("/")
+    @RequestMapping("")
     public String CustomerHome() {
         return "Working";
     }
 
     @RequestMapping(value="/signup", method=RequestMethod.POST)
-    public int addCustomer(@RequestBody Customer customer) {
+    public Customer addCustomer(@RequestBody Customer customer) {
         return customerService.addCustomer(customer);
     }
 

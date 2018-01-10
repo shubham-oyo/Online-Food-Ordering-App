@@ -1,7 +1,5 @@
 package com.example.models;
 
-import org.w3c.dom.ls.LSInput;
-
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
