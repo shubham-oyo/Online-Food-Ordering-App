@@ -14,19 +14,24 @@ public class Customer {
     //@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="uidSeq")
     @GeneratedValue(strategy=GenerationType.AUTO)
     @Column(updatable=false, nullable=false)
-    private int cid;
+    private int id;
 
+    @NotNull
+    private String mobileNumber;
     @NotNull
     private String firstName;
     private String lastName;
     private int age;
     private String address;
     private String prefferedFoodType;
+    @Transient
+    private String message;
 
     protected Customer() {
     }
 
-    public Customer(String firstName, String lastName, int age, String address, String prefferedFoodType) {
+    public Customer(String mobileNumber, String firstName, String lastName, int age, String address, String prefferedFoodType) {
+        this.mobileNumber = mobileNumber;
         this.firstName = firstName;
         this.lastName = lastName;
         this.age = age;
@@ -34,8 +39,12 @@ public class Customer {
         this.prefferedFoodType = prefferedFoodType;
     }
 
-    public void setUid(int cid) {
-        this.cid = cid;
+    public void setMobileNumber(String mobileNumber) {
+        this.mobileNumber = mobileNumber;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public void setFirstName(String firstName) {
@@ -58,8 +67,16 @@ public class Customer {
         this.prefferedFoodType = prefferedFoodType;
     }
 
-    public int getCid() {
-        return cid;
+    public void setMessage(String message) {
+        this.message = message;
+    }
+
+    public String getMobileNumber() {
+        return mobileNumber;
+    }
+
+    public int getId() {
+        return id;
     }
 
     public String getFirstName() {
@@ -80,5 +97,9 @@ public class Customer {
 
     public String getPrefferedFoodType() {
         return prefferedFoodType;
+    }
+
+    public String getMessage() {
+        return message;
     }
 }

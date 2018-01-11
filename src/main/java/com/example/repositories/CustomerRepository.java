@@ -3,6 +3,8 @@ package com.example.repositories;
 import com.example.models.Customer;
 import org.springframework.data.repository.CrudRepository;
 
-public interface CustomerRepository extends CrudRepository<Customer, Integer>{
+import java.util.Optional;
 
+public interface CustomerRepository extends CrudRepository<Customer, Integer>{
+    Customer findByMobileNumber(String mobileNumber);
 }
